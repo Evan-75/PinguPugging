@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta charset="UTF-8">
+<title>Pugging av det periodiske systemet</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="app">
+
+<h1 class="app-title"><span class="title-main" data-title-main>PinguPugging</span><span class="title-sep"> – </span><span class="title-sub" data-title-sub>Det periodiske system</span></h1>
+
+<div class="app-signature">
+  v2.6.3 - Utviklet av Bjørn Evan - 2026
+</div>
+
+
+
+
+<hr>
+
+<details id="filters-accordion"><summary>Filtre</summary><form id="filters">
+  <fieldset>
+    <legend>Kategori</legend>
+    <label><input type="checkbox" data-group="category" value="ALL" checked> Alle</label>
+    <label><input type="checkbox" data-group="category" value="alkali"> Alkalimetaller</label>
+    <label><input type="checkbox" data-group="category" value="alkaline"> Jordalkalimetaller</label>
+    <label><input type="checkbox" data-group="category" value="transition"> Overgangsmetaller</label>
+    <label><input type="checkbox" data-group="category" value="post"> Post-transition</label>
+    <label><input type="checkbox" data-group="category" value="metalloid"> Metalloider</label>
+    <label><input type="checkbox" data-group="category" value="nonmetal"> Andre ikke-metaller</label>
+    <label><input type="checkbox" data-group="category" value="halogen"> Halogener</label>
+    <label><input type="checkbox" data-group="category" value="noble"> Edelgasser</label>
+    <label><input type="checkbox" data-group="category" value="lanthanide"> Lantanider</label>
+    <label><input type="checkbox" data-group="category" value="actinide"> Aktinider</label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Blokk</legend>
+    <label><input type="checkbox" data-group="block" value="ALL" checked> Alle</label>
+    <label><input type="checkbox" data-group="block" value="s"> s</label>
+    <label><input type="checkbox" data-group="block" value="p"> p</label>
+    <label><input type="checkbox" data-group="block" value="d"> d</label>
+    <label><input type="checkbox" data-group="block" value="f"> f</label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Periode</legend>
+    <label><input type="checkbox" data-group="period" value="ALL" checked> Alle</label>
+    <label><input type="checkbox" data-group="period" value="1"> 1</label>
+    <label><input type="checkbox" data-group="period" value="2"> 2</label>
+    <label><input type="checkbox" data-group="period" value="3"> 3</label>
+    <label><input type="checkbox" data-group="period" value="4"> 4</label>
+    <label><input type="checkbox" data-group="period" value="5"> 5</label>
+    <label><input type="checkbox" data-group="period" value="6"> 6</label>
+    <label><input type="checkbox" data-group="period" value="7"> 7</label>
+  </fieldset>
+
+<div class="order-mode">
+  
+</div>
+
+<fieldset>
+  <legend>Rekkefølge</legend>
+  <label><input type="radio" name="orderMode" value="random" checked> Tilfeldig</label>
+  <label><input type="radio" name="orderMode" value="ascending"> Stigende</label>
+</fieldset>
+
+</form></details>
+
+<hr>
+
+<main id="quiz-wrapper">
+<section id="quiz">
+  <div id="quiz-number"></div>
+  </div><div id="quiz-answer"></div>
+</section>
+</main>
+
+<hr>
+
+<section id="ptable-wrapper">
+  <div id="ptable-illustration"><div id="ptable-grid"></div>
+  <div id="lanthanides"></div>
+  <div id="actinides"></div></div>
+</section>
+
+<hr>
+
+<section id="facts">
+  <div id="filter-info"></div>
+  <ul id="fact-list"></ul>
+</section>
+
+<script src="elements.js"></script>
+<script src="filter-info.js"></script>
+<script src="app.js"></script>
+
+<!-- Mobile Quiz Trigger (input-adapter only) -->
+<div id="mobile-quiz-trigger" aria-hidden="true"></div>
+
+
+<!-- Mobile Overlay (filters + table) -->
+<div id="mobile-overlay" aria-hidden="true">
+  <button id="overlay-close" aria-label="Lukk">×</button>
+  <div id="overlay-content">
+    <!-- Existing controls will be visually placed here on mobile via CSS -->
+  </div>
+</div>
+
+</div>
+
+<div class="mobile-periodic-context">
+  <img src="assets/periodic-table-mobile.png?v=1" alt="Det periodiske system">
+</div>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+</body>
+
+</html>

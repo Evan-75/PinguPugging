@@ -1,0 +1,684 @@
+/* =========================================================
+   PUGGING AV DET PERIODISKE SYSTEM – NIVÅ A (LÅST)
+   style.css – UNIFORMT MELLOMROM I HELE TABELLEN
+   ========================================================= */
+
+/* ===============================
+   Typografi
+   =============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+body{
+  background:#f7f6f3;
+  color:#111;
+  font-family:"Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin:28px;
+}
+
+h1{
+  text-align:center;
+  font-family:"Libre Baskerville", Georgia, serif;
+  font-weight:700;
+  letter-spacing:0.04em;
+  margin-bottom:18px;
+}
+
+hr{
+  border:none;
+  border-top:1px solid #c4c2bc;
+  margin:22px 0;
+}
+
+/* ===============================
+   Filtre
+   =============================== */
+
+fieldset{
+  border:1px solid #c4c2bc;
+  padding:8px 10px;
+  margin-bottom:10px;
+}
+
+legend{
+  font-size:12px;
+  color:#333;
+  padding:0 6px;
+}
+
+label{
+  margin-right:12px;
+  font-size:12px;
+}
+
+input{ cursor:pointer; }
+
+/* ===============================
+   Quiz
+   =============================== */
+
+#quiz-number{
+  font-size:46px;
+  text-align:center;
+  font-weight:600;
+  letter-spacing:0.08em;
+}
+
+#quiz-answer{
+  font-family:"Libre Baskerville", Georgia, serif;
+  font-size:30px;
+  font-weight:700;
+  text-align:center;
+  height:42px;
+  line-height:42px;
+  letter-spacing:0.05em;
+}
+
+/* ===============================
+   Periodisk tabell
+   =============================== */
+
+#ptable-wrapper{
+  margin:0 auto;
+}
+
+/* HOVEDTABELL – én kilde til sannhet for mellomrom */
+#ptable-grid{
+  display:grid;
+  grid-template-columns:36px repeat(18,44px);
+  grid-template-rows:24px repeat(7,34px);
+  gap:2px;
+  justify-content:center;
+}
+
+/* F-BLOKK – SAMME GAP SOM HOVEDTABELL */
+#lanthanides,
+#actinides{
+  display:grid;
+  grid-template-columns:36px repeat(14,44px);
+  gap:2px;                 /* IDENTISK gap */
+  justify-content:center;
+  margin-left:124px;       /* KUN horisontal forskyvning */
+}
+
+#lanthanides{ margin-top:12px; }
+#actinides{ margin-top:4px; }
+
+/* ===============================
+   Gruppe- og periodetall
+   =============================== */
+
+.group-label{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:24px;
+  font-size:11px;
+  font-weight:500;
+  color:#333;
+  letter-spacing:0.06em;
+}
+
+.period-label{
+  font-size:11px;
+  font-weight:500;
+  color:#333;
+  letter-spacing:0.04em;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding-right:6px;
+}
+
+/* ===============================
+   Celler
+   =============================== */
+
+.cell{
+  width:44px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:500;
+  border:1px solid #777;
+  box-sizing:border-box;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtil hover */
+.cell:hover{
+  outline:1px solid #000;
+  outline-offset:-1px;
+}
+
+.cell.lanthanide,
+.cell.actinide{
+  border-color:#666;
+}
+
+.cell .symbol{
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:0.04em;
+}
+
+.cell.active{
+  border:3px solid #000;
+}
+
+/* ===============================
+   Kategorifarger (uendret)
+   =============================== */
+
+.cell.alkali{background:#ff6666}
+.cell.alkaline{background:#ffdead}
+.cell.transition{background:#ffc0c0}
+.cell.post{background:#cccccc}
+.cell.metalloid{background:#cccc99}
+.cell.nonmetal{background:#99cc99}
+.cell.halogen{background:#99ffff}
+.cell.noble{background:#c0ffff}
+.cell.lanthanide{background:#ffbfff}
+.cell.actinide{background:#ff99cc}
+
+/* ===============================
+   Fakta
+   =============================== */
+
+#facts{
+  max-width:680px;
+  margin:0 auto;
+}
+
+#facts h2{
+  font-family:"Libre Baskerville", Georgia, serif;
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+#fact-list{
+  padding-left:18px;
+}
+
+#fact-list li{
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:6px;
+}
+
+
+/* Mobile Quiz Trigger: input-adapter only */
+#mobile-quiz-trigger {
+  display: none;
+  pointer-events: auto;
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  #mobile-quiz-trigger {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 28vh;
+    z-index: 10;
+    background: transparent;
+  }
+}
+
+
+@media (max-width: 768px) {
+  #mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    z-index: 9999;
+  }
+  #mobile-overlay[aria-hidden="false"] { display: block; }
+  #overlay-content {
+    background: #111;
+    height: 100%;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+  #overlay-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #fff;
+  }
+}
+
+
+@media (max-width: 768px) {
+  #quiz-wrapper {
+    touch-action: manipulation;
+  }
+}
+
+
+/* M1 – Responsive title */
+.app-title { 
+  margin: 0;
+  line-height: 1.2;
+}
+.app-title .title-main,
+.app-title .title-sub { display: inline; }
+
+@media (max-width: 768px) {
+  .app-title { 
+    display: grid;
+    grid-auto-rows: min-content;
+  }
+  .app-title .title-main,
+  .app-title .title-sub { 
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .app-title .title-sep { display: none; }
+}
+
+@media (min-width: 769px) {
+  .app-title { white-space: nowrap; }
+  .app-title .title-sep { display: inline; }
+}
+
+
+/* M2 – Mobile table constraint (overlay only) */
+@media (max-width: 768px) {
+  #mobile-overlay table {
+    max-width: 100%;
+    width: 100%;
+    table-layout: fixed;
+  }
+  #mobile-overlay th,
+  #mobile-overlay td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    font-size: 0.9rem;
+  }
+  #mobile-overlay {
+    overscroll-behavior: contain;
+  }
+}
+
+
+/* M2 fix – robust mobile table handling (overlay only) */
+@media (max-width: 768px) {
+  #mobile-overlay {
+    overflow: hidden;
+  }
+
+  #mobile-overlay table {
+    display: block;
+    max-width: 100%;
+    width: max-content;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: collapse;
+  }
+
+  #mobile-overlay thead,
+  #mobile-overlay tbody,
+  #mobile-overlay tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  #mobile-overlay th,
+  #mobile-overlay td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* M2.2 – Mobile cartographic mode for periodic table (overlay only) */
+@media (max-width: 768px) {
+  #mobile-overlay {
+    overflow: hidden;
+  }
+
+  #mobile-overlay table {
+    transform-origin: top left;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Scale down the entire table uniformly */
+  #mobile-overlay .periodic-table,
+  #mobile-overlay table {
+    transform: scale(0.65);
+  }
+}
+
+
+/* M3.1 – Mobile typography (header + controls only) */
+@media (max-width: 768px) {
+  /* Header title */
+  .app-title {
+    font-size: 1.05rem;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+  .app-title .title-main {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .app-title .title-sub {
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.9;
+  }
+
+  /* Controls / filters */
+  #controls,
+  .controls,
+  .filters {
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+}
+
+
+/* M3.2 – Mobile quiz typography */
+@media (max-width: 768px) {
+  /* Quiz number / main quiz text */
+  #quiz-wrapper,
+  #quiz-wrapper * {
+    line-height: 1.15;
+  }
+
+  #quiz-wrapper .quiz-number,
+  #quiz-wrapper .quiz-value,
+  #quiz-wrapper .quiz-main,
+  #quiz-wrapper .question,
+  #quiz-wrapper .answer {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  /* Subtext or secondary quiz info */
+  #quiz-wrapper .quiz-sub,
+  #quiz-wrapper .hint,
+  #quiz-wrapper .meta {
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+}
+
+
+/* v1.7.0 – Mini container for periodic table (mobile only) */
+@media (max-width: 768px) {
+  .ptable-mini {
+    width: 35vw;
+    margin: 0 auto;
+  }
+}
+
+
+/* v1.7.2 – FINAL: force mini size on the real periodic system (robust) */
+@media (max-width: 768px) {
+  #ptable-wrapper,
+  #ptable-grid,
+  .periodic-system,
+  .ptable {
+    width: 35vw !important;
+    max-width: 35vw !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+/* Mobile: scale periodic table as single illustration */
+@media (max-width: 768px) {
+  #ptable-illustration {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    transform: scale(0.6);
+    transform-origin: top center;
+  }
+
+  #ptable-illustration > * {
+    margin: 0;
+  }
+}
+
+
+/* Desktop: mobile overlay must not render */
+@media (min-width: 769px) {
+  #mobile-overlay,
+  #overlay-close {
+    display: none !important;
+  }
+}
+
+
+/* =================================================
+   MOBILE SIMPLE MODE – QUIZ FIRST
+   ================================================= */
+@media (max-width: 768px) {
+
+  /* Hide periodic table entirely on mobile */
+  #ptable-grid,
+  #lanthanides,
+  #actinides,
+  #ptable-illustration {
+    display: none !important;
+  }
+
+  /* Ensure single vertical flow */
+  body {
+    display: block;
+  }
+
+  /* Quiz focus */
+  #quiz {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin-top: 0.5rem;
+  }
+
+  /* Compact facts */
+  #facts {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    margin-top: 0.5rem;
+  }
+
+  /* Filters last */
+  #filters,
+  form {
+    margin-top: 1.2rem;
+  }
+
+  /* No separators on mobile */
+  hr {
+    display: none !important;
+  }
+}
+
+
+/* Mobile: move filters to bottom */
+@media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #quiz, .quiz {
+    order: 1;
+  }
+
+  #facts, .facts {
+    order: 2;
+  }
+
+  #filters, form {
+    order: 99;
+  }
+}
+
+
+/* Mobile: stabilize fact box height to avoid filter jumping */
+@media (max-width: 768px) {
+  #facts, .facts, #factbox, .factbox {
+    min-height: 9.5rem;
+    padding-bottom: 0.75rem;
+  }
+}
+
+
+/* Mobile: filters as accordion */
+@media (max-width: 768px) {
+  #filters-accordion {
+    margin-top: 1rem;
+  }
+  #filters-accordion > summary {
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+  #filters-accordion > summary::-webkit-details-marker {
+    display: none;
+  }
+  #filters-accordion[open] > summary::after {
+    content: " ▲";
+  }
+  #filters-accordion:not([open]) > summary::after {
+    content: " ▼";
+  }
+}
+
+.app-signature {
+  font-size: 0.65em;
+  color: #777;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Cosmetic tightening of periodic table spacing */
+#periodic-table {
+  grid-gap: 4px;
+}
+
+#periodic-table .element {
+  margin: 0;
+}
+
+/* Mobile-only static periodic table */
+.mobile-periodic {
+  display: none;
+  margin: 12px auto 16px;
+  text-align: center;
+}
+.mobile-periodic img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Show on small screens only */
+@media (max-width: 768px) {
+  #periodic-table { display: none; }
+  .mobile-periodic { display: block; }
+}
+
+/* Mobile content ordering */
+@media (max-width: 768px) {
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+  header { order: 1; }
+  .filters, .filter-container, form { order: 2; }
+  .quiz, .quiz-container { order: 3; }
+  .mobile-periodic { order: 4; }
+  .fact-box, .facts, .fact-container { order: 5; }
+}
+
+/* Emphasize main heading */
+h1 {
+  font-size: 2.2em;
+}
+
+.mobile-periodic {
+  margin-top: 12px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .mobile-periodic {
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+  }
+}
+
+/* GUARANTEED mobile periodic image */
+.mobile-periodic-context {
+  margin: 16px auto;
+  text-align: center;
+}
+.mobile-periodic-context img {
+  max-width: 100%;
+  height: auto;
+}
+@media (min-width: 769px) {
+  .mobile-periodic-context { display: none; }
+}
+
+/* Header emphasis */
+h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 0.4em;
+}
+h2 {
+  font-size: 1.4rem;
+}
+
+/* Final typographic balance */
+header h1 {
+  font-size: 2.6rem;
+  line-height: 1.15;
+  margin-bottom: 0.2em;
+}
+
+header h2 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 0.4em;
+}
+
+header .signature {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-bottom: 1.2em;
+}
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 2.2rem !important;
+    line-height: 1.2;
+  }
+}
+
+
